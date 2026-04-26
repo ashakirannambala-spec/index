@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profound Ripples — Parent–Child Mentorship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --card: #161616;
+      --border: #282828;
+      --grey: #808080;
+      --light: #d8d8d8;
+      --white: #f0f0f0;
+      --mauve: #b06090;
+      --mauve-light: #cc80aa;
+      --red: #c03030;
+      --gold: #c8a86a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--light);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    /* Inline logo recreation */
+    .logo-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+    }
+    .logo-text-top {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: var(--grey);
+    }
+    .logo-text-top .o-special {
+      display: inline-block;
+      position: relative;
+    }
+    .logo-text-top .o-special::before {
+      content: '';
+      display: inline-block;
+      width: 0.72em;
+      height: 0.72em;
+      border-radius: 50%;
+      border: 2px solid var(--mauve);
+      vertical-align: -0.12em;
+      margin: 0 -0.02em;
+      background: transparent;
+    }
+    .logo-text-bottom {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      color: var(--grey);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--grey);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--mauve-light); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--mauve);
+      color: var(--mauve-light);
+      padding: 0.5rem 1.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      background: var(--mauve);
+      color: var(--white);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10rem 5vw 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(176,96,144,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* Big logo in hero */
+    .hero-logo {
+      position: relative;
+      margin-bottom: 3rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-logo-word {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.9;
+      color: #707070;
+      letter-spacing: 0.06em;
+      position: relative;
+    }
+
+    .hero-logo-word.profound { margin-bottom: -0.05em; }
+
+    .o-ring {
+      display: inline-block;
+      position: relative;
+      width: 0.58em;
+      height: 0.58em;
+      vertical-align: 0.14em;
+      margin: 0 0.01em;
+    }
+    .o-ring svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--grey);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--mauve);
+      margin: 0 auto 2rem;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.9;
+      margin: 0 auto 3rem;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .btn-primary {
+      background: var(--mauve);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--mauve-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 1px solid var(--border);
+      padding: 0.9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-secondary:hover {
+      border-color: var(--grey);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeUp 1s 0.8s ease both;
+    }
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--mauve), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 8rem 5vw;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--mauve-light);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--grey);
+      max-width: 540px;
+      line-height: 1.9;
+    }
+
+    /* ── PROBLEM ── */
+    .problem {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .problem-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--white);
+      border-left: 2px solid var(--mauve);
+      padding-left: 2rem;
+    }
+    .problem-quote strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--mauve-light);
+    }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: border-color 0.3s;
+    }
+    .problem-item:hover { border-color: var(--mauve); }
+
+    .problem-icon {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    .problem-item h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+    .problem-item p {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ── WHAT IS / IS NOT ── */
+    .what-it-is {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .not-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .not-item {
+      background: var(--card);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .not-item .cross {
+      font-size: 1.5rem;
+      color: var(--red);
+      opacity: 0.5;
+      margin-bottom: 0.6rem;
+    }
+
+    .not-item h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: line-through;
+      text-decoration-color: rgba(192,48,48,0.4);
+    }
+
+    .is-statement {
+      text-align: center;
+      padding: 3rem;
+      border: 1px solid var(--mauve);
+      background: linear-gradient(135deg, rgba(176,96,144,0.05), transparent);
+    }
+
+    .is-statement h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .is-statement p {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--mauve-light);
+      text-transform: uppercase;
+    }
+
+    /* ── PHASES ── */
+    .phases {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phases-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 5rem;
+    }
+
+    .phases-track {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .phases-track::before {
+      content: '';
+      position: absolute;
+      top: 2.4rem;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--mauve), var(--mauve-light), var(--mauve));
+    }
+
+    .phase-card {
+      padding: 0 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .phase-number {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      border: 1px solid var(--mauve);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      background: var(--dark);
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+    .phase-card:hover .phase-number {
+      background: var(--mauve);
+    }
+
+    .phase-number span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--mauve-light);
+    }
+    .phase-card:hover .phase-number span { color: var(--white); }
+
+    .phase-months {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--mauve);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .phase-desc {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    /* ── WHO IS THIS FOR ── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 4rem auto 0;
+    }
+
+    .who-card {
+      padding: 3rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .who-card:hover { border-color: var(--mauve); }
+
+    .who-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(176,96,144,0.12), transparent);
+    }
+
+    .who-card-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 1.5rem;
+    }
+
+    .who-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .who-traits {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .who-traits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    .who-traits li::before {
+      content: '—';
+      color: var(--mauve);
+      flex-shrink: 0;
+    }
+
+    .gut-feeling {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(176,96,144,0.06), transparent);
+      text-align: center;
+    }
+
+    .gut-feeling p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .gut-feeling p span { color: var(--mauve-light); }
+
+    /* ── OUTCOMES ── */
+    .outcomes {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .outcomes-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .outcome-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .outcome-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .outcome-item:last-child { border-bottom: none; }
+
+    .outcome-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(176,96,144,0.3);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2.5rem;
+    }
+
+    .outcome-text h4 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .outcome-text p {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .outcomes-visual {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .stat-block {
+      padding: 3rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .stat-block:hover { border-color: var(--mauve); }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--mauve-light);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--grey);
+      text-transform: uppercase;
+    }
+
+    /* ── FOUNDER ── */
+    .founder-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .founder-card {
+      padding: 3rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+    }
+
+    .founder-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: -1px; right: -1px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--mauve), transparent);
+    }
+
+    .founder-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .founder-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--mauve);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      color: var(--grey);
+      text-transform: uppercase;
+    }
+
+    .founder-bio {
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.9;
+    }
+
+    .founder-bio p + p { margin-top: 1.2rem; }
+
+    .founder-books {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .book-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      background: rgba(176,96,144,0.04);
+    }
+
+    .book-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--mauve);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .book-icon svg { width: 16px; height: 16px; }
+
+    .book-item span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--white);
+    }
+
+    /* ── FOUNDING FAMILIES ── */
+    .founding {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .founding-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .founding-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .founding-badge::before {
+      content: '★';
+      font-size: 0.6rem;
+    }
+
+    .founding-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .founding-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .founding-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .founding-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(200,168,106,0.2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .founding-card h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .founding-card p {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .founding-cta {
+      margin-top: 3rem;
+      padding: 3rem;
+      border: 1px solid var(--gold);
+      background: linear-gradient(135deg, rgba(200,168,106,0.05), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .founding-cta h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+    }
+
+    .founding-cta p {
+      font-size: 0.85rem;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    .btn-gold {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .btn-gold:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ── PROCESS ── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1100px;
+      margin: 4rem auto 0;
+      border: 1px solid var(--border);
+    }
+
+    .process-step {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .process-step:last-child { border-right: none; }
+    .process-step:hover { background: var(--card); }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(176,96,144,0.2);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--mauve);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .step-icon svg { width: 20px; height: 20px; stroke: var(--mauve); fill: none; }
+
+    .process-step h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .process-step p {
+      font-size: 0.82rem;
+      color: var(--grey);
+      line-height: 1.8;
+    }
+
+    /* ── INVESTMENT ── */
+    .investment {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .investment-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .price-block {
+      padding: 4rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--mauve), transparent);
+    }
+
+    .price-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-main sup {
+      font-size: 0.4em;
+      vertical-align: 0.5em;
+      color: var(--mauve-light);
+    }
+
+    .price-period {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--grey);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .price-includes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .include-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--grey);
+    }
+
+    .include-item::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mauve);
+      flex-shrink: 0;
+    }
+
+    .impact-note {
+      padding: 1.5rem 2rem;
+      border: 1px solid rgba(176,96,144,0.3);
+      background: rgba(176,96,144,0.04);
+      font-size: 0.85rem;
+      color: var(--mauve-light);
+      text-align: center;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 10rem 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(176,96,144,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section .section-title { max-width: 700px; margin: 1rem auto 1.5rem; }
+    .cta-section .section-subtitle { max-width: 500px; margin: 0 auto 3rem; text-align: center; }
+
+    .cta-meta {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-meta-item {
+      text-align: center;
+    }
+
+    .cta-meta-item .val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--mauve-light);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .cta-meta-item .lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--grey);
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 5vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--border);
+      letter-spacing: 0.05em;
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    footer a {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--grey);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: var(--mauve-light); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .problem-grid,
+      .who-grid,
+      .outcomes-header,
+      .founder-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+      .phases-track {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .phases-track::before { display: none; }
+
+      .not-grid { grid-template-columns: 1fr; }
+      .founding-cards { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+
+      .nav-links { display: none; }
+
+      .founding-cta { flex-direction: column; }
+
+      .outcomes-visual { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <div class="logo-text-top">
+        PROF<span class="o-special"></span>UND
+      </div>
+      <div class="logo-text-bottom">RIPPLES</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#founding">Founding Families</a></li>
+    <li><a href="#investment">Investment</a></li>
+  </ul>
+  <a href="#apply" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo">
+    <span class="hero-logo-word profound">
+      PROF<span class="o-ring">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ring -->
+          <circle cx="50" cy="58" r="36" fill="none" stroke="#b06090" stroke-width="5"/>
+          <!-- Antenna left -->
+          <line x1="38" y1="22" x2="28" y2="6" stroke="#c03030" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="28" cy="6" r="6" fill="#c03030"/>
+          <!-- Antenna right -->
+          <line x1="62" y1="22" x2="72" y2="6" stroke="#c03030" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="72" cy="6" r="6" fill="#c03030"/>
+        </svg>
+      </span>UND
+    </span>
+    <span class="hero-logo-word">RIPPLES</span>
+  </div>
+  <p class="hero-tagline">Parent–Child Mentorship · A Holistic Approach to Raising Future Generations</p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">A one-year, immersive mentorship program for adolescents aged 13–19 and their parents. Built not to improve grades — but to shape character, identity, and life readiness.</p>
+  <div class="hero-actions">
+    <a href="#apply" class="btn-primary">Book a Discovery Call</a>
+    <a href="#about" class="btn-secondary">Learn More</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="about">
+  <div class="problem-grid">
+    <div class="reveal">
+      <div class="section-label">The Reality</div>
+      <blockquote class="problem-quote">
+        Most systems train children to <strong>score well.</strong><br>
+        Very few train them to <strong>live well.</strong>
+      </blockquote>
+    </div>
+    <div class="problem-list reveal reveal-delay-1">
+      <div class="problem-item">
+        <div class="problem-icon"></div>
+        <div>
+          <h4>Academic Overemphasis</h4>
+          <p>Marks become the only measure of worth — leaving identity, passion, and purpose unexplored.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon"></div>
+        <div>
+          <h4>Digital Addiction</h4>
+          <p>Unguided screen time fragments focus, shortens attention, and erodes real-world connection.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon"></div>
+        <div>
+          <h4>Emotional Fragility</h4>
+          <p>Adolescents are navigating immense internal change with little structured emotional support.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon"></div>
+        <div>
+          <h4>Identity Confusion & Decision Paralysis</h4>
+          <p>Without self-awareness, teens drift — unsure of their strengths, values, or what they want.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section id="program">
+  <div class="what-it-is reveal">
+    <div class="section-label">The Program</div>
+    <h2 class="section-title">What Profound Ripples <em>Is Not</em></h2>
+    <div class="not-grid">
+      <div class="not-item">
+        <div class="cross">✕</div>
+        <h4>Tutoring</h4>
+      </div>
+      <div class="not-item">
+        <div class="cross">✕</div>
+        <h4>Therapy</h4>
+      </div>
+      <div class="not-item">
+        <div class="cross">✕</div>
+        <h4>Career Counselling</h4>
+      </div>
+    </div>
+    <div class="is-statement">
+      <h3>Identity &amp; Life Leadership Mentorship</h3>
+      <p>Builds the person, not just the performer</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES / JOURNEY -->
+<section class="phases" id="journey">
+  <div class="phases-header reveal">
+    <div class="section-label">The 12-Month Arc</div>
+    <h2 class="section-title">A Structured <em>Journey</em> of Growth</h2>
+    <p class="section-subtitle" style="margin: 0 auto;">Each phase builds deliberately on the last — from mindset reset to self-directed life vision.</p>
+  </div>
+  <div class="phases-track">
+    <div class="phase-card reveal reveal-delay-1">
+      <div class="phase-number"><span>I</span></div>
+      <div class="phase-months">Months 1–3</div>
+      <h3 class="phase-name">Conceptual</h3>
+      <p class="phase-desc">Mindset reset, routine formation, and foundational balance. Laying the internal ground.</p>
+    </div>
+    <div class="phase-card reveal reveal-delay-2">
+      <div class="phase-number"><span>II</span></div>
+      <div class="phase-months">Months 4–6</div>
+      <h3 class="phase-name">Exploration</h3>
+      <p class="phase-desc">Exposure to new domains, interest mapping, and curiosity activation.</p>
+    </div>
+    <div class="phase-card reveal reveal-delay-3">
+      <div class="phase-number"><span>III</span></div>
+      <div class="phase-months">Months 7–9</div>
+      <h3 class="phase-name">Consolidation</h3>
+      <p class="phase-desc">Confidence building, worldview expansion, and deepening self-understanding.</p>
+    </div>
+    <div class="phase-card reveal reveal-delay-4">
+      <div class="phase-number"><span>IV</span></div>
+      <div class="phase-months">Months 10–12</div>
+      <h3 class="phase-name">Maturity</h3>
+      <p class="phase-desc">Vision clarity, self-directed action planning, and life leadership emergence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section>
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">Ideal Participants</div>
+      <h2 class="section-title">Who <em>This Is For</em></h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-card reveal reveal-delay-1">
+        <div class="who-card-label">The Parent</div>
+        <h3>Thoughtful.<br>Forward-looking.</h3>
+        <ul class="who-traits">
+          <li>38–52 years old, CXO / senior manager / entrepreneur</li>
+          <li>Progressive, well-educated, and financially stable</li>
+          <li>Senses their child is meant for something bigger</li>
+          <li>Active in premium professional and social networks</li>
+          <li>Open-minded — not marks-obsessed</li>
+        </ul>
+      </div>
+      <div class="who-card reveal reveal-delay-2">
+        <div class="who-card-label">The Child</div>
+        <h3>Bright.<br>Curious. Searching.</h3>
+        <ul class="who-traits">
+          <li>13–19 years old, with real sparks in sports, art, music, or leadership</li>
+          <li>Possibly force-fed academics, or high-performing but purposeless</li>
+          <li>Open to structured growth and honest reflection</li>
+          <li>Needs identity clarity, not just better grades</li>
+          <li>Ready to ask bigger questions about themselves</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gut-feeling reveal">
+      <p>"My child is meant for something bigger — <span>I just don't know how to unlock it."</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes">
+  <div class="outcomes-header">
+    <div>
+      <div class="section-label reveal">Transformation</div>
+      <h2 class="section-title reveal">What Changes <em>Over a Year</em></h2>
+      <p class="section-subtitle reveal">Each outcome is measured, tracked, and documented — so the transformation is visible, not just felt.</p>
+      <div class="outcome-list">
+        <div class="outcome-item reveal reveal-delay-1">
+          <div class="outcome-num">01</div>
+          <div class="outcome-text">
+            <h4>Self-Awareness & Emotional Regulation</h4>
+            <p>The ability to name, understand, and navigate inner states — a foundational life skill.</p>
+          </div>
+        </div>
+        <div class="outcome-item reveal reveal-delay-2">
+          <div class="outcome-num">02</div>
+          <div class="outcome-text">
+            <h4>Independent Thinking & Curiosity</h4>
+            <p>Moving from passive consumption to genuine inquiry and original perspective.</p>
+          </div>
+        </div>
+        <div class="outcome-item reveal reveal-delay-3">
+          <div class="outcome-num">03</div>
+          <div class="outcome-text">
+            <h4>Disciplined Digital Habits</h4>
+            <p>Intentional, self-directed relationship with screens and digital environments.</p>
+          </div>
+        </div>
+        <div class="outcome-item reveal reveal-delay-1">
+          <div class="outcome-num">04</div>
+          <div class="outcome-text">
+            <h4>Clearer Communication & Resilience</h4>
+            <p>Expressing oneself with confidence and recovering from setbacks with strength.</p>
+          </div>
+        </div>
+        <div class="outcome-item reveal reveal-delay-2">
+          <div class="outcome-num">05</div>
+          <div class="outcome-text">
+            <h4>Clarity on Strengths & Life Priorities</h4>
+            <p>A concrete understanding of who they are, what they value, and where they want to go.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="outcomes-visual reveal">
+      <div class="stat-block">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Months of immersive mentorship</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Structured development phases</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Proceeds directed to social cause</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">13–19</div>
+        <div class="stat-label">Age range — the formative years</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="founder-inner">
+    <div class="reveal">
+      <div class="founder-card">
+        <div class="founder-name">Sanket Dharod</div>
+        <div class="founder-title">Founder & Lead Mentor</div>
+        <p style="font-size:0.8rem;color:var(--grey);line-height:1.8;">Managing Director, Group Welkin<br>ISB Alumni — Dean's List</p>
+        <div class="founder-tags">
+          <span class="tag">Business Leadership</span>
+          <span class="tag">Parenting Philosophy</span>
+          <span class="tag">Published Author</span>
+          <span class="tag">Holistic Growth</span>
+          <span class="tag">Awareness-Based Living</span>
+        </div>
+        <div class="founder-books" style="margin-top:2rem">
+          <div class="book-item">
+            <div class="book-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <span>The Parenting Flow</span>
+          </div>
+          <div class="book-item">
+            <div class="book-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <span>Flow with the Flow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="section-label">The Mentor</div>
+      <h2 class="section-title">Experience That<br><em>Lives in the Room</em></h2>
+      <div class="founder-bio">
+        <p>Sanket Dharod brings together two worlds rarely combined: the discipline of business leadership and the depth of parenting philosophy. As Managing Director of Group Welkin and an ISB alumni ranked on the Dean's List, he has navigated real-world complexity at the highest levels.</p>
+        <p>His two published books — <em>The Parenting Flow</em> and <em>Flow with the Flow</em> — emerge from lived experience, not theory. They reflect years of integrating awareness-based living into the way he leads, parents, and mentors.</p>
+        <p>Profound Ripples is not a product. It is an extension of who he is — and a commitment to the families who trust him with their most important work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING FAMILIES -->
+<section class="founding" id="founding">
+  <div class="founding-inner">
+    <div class="reveal">
+      <div class="founding-badge">Founding Families Initiative</div>
+      <h2 class="section-title">Be One of the<br><em>First Five Families</em></h2>
+      <p class="section-subtitle">An exclusive invitation for families who want to be part of something from its origin — and shape what it becomes.</p>
+    </div>
+    <div class="founding-cards">
+      <div class="founding-card reveal reveal-delay-1">
+        <div class="num">01</div>
+        <h4>Priority Access</h4>
+        <p>First-in-line for scheduling, sessions, and direct access to the founder — with no waitlists, ever.</p>
+      </div>
+      <div class="founding-card reveal reveal-delay-2">
+        <div class="num">02</div>
+        <h4>Extended Engagement</h4>
+        <p>Founding families receive additional touchpoints, deeper check-ins, and enhanced involvement throughout the year.</p>
+      </div>
+      <div class="founding-card reveal reveal-delay-3">
+        <div class="num">03</div>
+        <h4>Legacy of Impact</h4>
+        <p>Your child's journey becomes the first documented story — a real case study that inspires future families for years to come.</p>
+      </div>
+    </div>
+    <div class="founding-cta reveal">
+      <div>
+        <h3>Only 5–8 Founding Family Spots</h3>
+        <p>Applications reviewed personally. Not every family is accepted.</p>
+      </div>
+      <a href="#apply" class="btn-gold">Apply as a Founding Family</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">How to Begin</div>
+      <h2 class="section-title">Three Steps to<br><em>Clarity</em></h2>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h4>Interest Form</h4>
+        <p>A short, thoughtful form to understand your child — what they're naturally drawn to, where they feel most alive, and what challenges they face.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h4>Discovery Call</h4>
+        <p>A 30-minute conversation with the parent. No pitch, no pressure — just honest dialogue about your family's context, aspirations, and readiness.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Child Interaction</h4>
+        <p>A brief, informal conversation with your child — to assess fit, openness, and mutual readiness before any commitment is made.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="investment" id="investment">
+  <div class="investment-inner">
+    <div class="reveal">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Takes to<br><em>Begin</em></h2>
+      <p class="section-subtitle" style="margin: 0 auto; text-align:center;">A commitment of time, trust, and resources — for a transformation that lasts a lifetime.</p>
+    </div>
+    <div class="price-block reveal">
+      <div class="price-main"><sup>₹</sup>5 Lakhs</div>
+      <div class="price-period">One Year · Full Program</div>
+      <div class="price-includes">
+        <div class="include-item">Weekly sessions (initial phase)</div>
+        <div class="include-item">Biweekly sessions (ongoing)</div>
+        <div class="include-item">Monthly parent reviews</div>
+        <div class="include-item">Detailed session notes</div>
+        <div class="include-item">Email support throughout</div>
+        <div class="include-item">In-person (Hyderabad) or online</div>
+        <div class="include-item">Books, resources & exposure</div>
+        <div class="include-item">Structured reflection framework</div>
+      </div>
+    </div>
+    <div class="impact-note reveal">
+      ✦ &nbsp; 100% of proceeds go toward a social cause. Profound Ripples operates as a give-back initiative. Transparency documentation available upon request.
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="apply">
+  <div class="section-label">Begin the Conversation</div>
+  <h2 class="section-title">Your Child is Ready.<br><em>Are You?</em></h2>
+  <p class="section-subtitle">Book a free 30-minute discovery call. No commitment. Just clarity.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="mailto:hello@profoundripples.com" class="btn-primary">Book a Free Discovery Call</a>
+    <a href="#founding" class="btn-secondary">Apply as Founding Family</a>
+  </div>
+  <div class="cta-meta">
+    <div class="cta-meta-item">
+      <div class="val">Hyderabad</div>
+      <div class="lbl">In-person available</div>
+    </div>
+    <div class="cta-meta-item">
+      <div class="val">Online</div>
+      <div class="lbl">Remote sessions available</div>
+    </div>
+    <div class="cta-meta-item">
+      <div class="val">13–19</div>
+      <div class="lbl">Age range</div>
+    </div>
+    <div class="cta-meta-item">
+      <div class="val">5–8</div>
+      <div class="lbl">Founding family spots</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Profound Ripples. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#journey">Program</a>
+    <a href="#founder">Founder</a>
+    <a href="#apply">Apply</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(40,40,40,0.8)';
+    } else {
+      nav.style.borderBottomColor = 'var(--border)';
+    }
+  });
+</script>
+</body>
+</html>
